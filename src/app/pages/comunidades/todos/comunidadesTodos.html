@@ -1,0 +1,74 @@
+  <div ba-panel ba-panel-class="profile-page" ng-if="!loggedIn">
+  
+  <div class="panel-content">
+    Apenas administradores tem acesso a essa função
+  </div>
+  </div>
+
+<div  ng-if="loggedIn">
+<div class="widgets" ng-if="!carregandoSites">
+
+   <div class="row">
+    <div class="col-md-12">
+      <div ba-panel ba-panel-title="Comunidades" ba-panel-class="with-scroll">
+       
+              <button type="button" class="btn btn-danger" style="float: right;" ng-click="mostraDelecao()">
+                <i class="glyphicon glyphicon-remove"></i>
+            </button>
+
+
+
+        <div class="horizontal-scroll">
+          <div class="form-group select-page-size-wrap ">
+            <label>Registro por página
+              <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                      ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+              </select>
+            </label>
+          </div>
+          <table class="table" st-table="smartTableData">
+            <thead>
+            <tr class="sortable ">
+              <th class="table-id st-sort='name'" st-sort-default="true">Nome</th>
+              <th st-sort="description">Descrição</th>
+              <th ng-if="deletarComunidade">Deletar</th>
+            </tr>
+            <tr>
+              <th class="col-md-3"><input st-search="name" placeholder="Busca Nome" class="input-sm form-control search-input"
+                         type="search" " /></th>
+
+              <th><input st-search="description" placeholder="Busca por Descrição" class="input-sm form-control search-input" type="search"/>
+              </th>
+               <th class="col-md-1" ng-if="deletarComunidade"></th>
+             
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in smartTableData">
+              <td class="table-id" ui-sref="comunidades.unico({id:item._id})"  style="cursor:pointer">{{item.name}}</td>
+              <td>{{item.description}}</td>
+              <td ng-if="deletarComunidade">
+                 <button ng-show="deletarComunidade" class="btn btn-danger editable-table-button btn-xs" ng-click="removeComunidades(item._id)">Deletar</button>
+               </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <td colspan="6" class="text-center">
+                <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+              </td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+</div>

@@ -1,0 +1,132 @@
+<div ba-panel ba-panel-class="profile-page" >
+  <form ng-submit="addDados()">
+  <div class="panel-content">
+
+    <h3 class="with-line">Dados
+         <button type="button" class="btn btn-default" style="float: right;" ng-click="gonnaEdit()" ng-show="editar && !mostrarAbstracao">
+            <i class="glyphicon glyphicon-edit"></i> Editar 
+         </button>
+
+        <button type="button" class="btn btn-default" style="float: right;" ng-click="discardChanges()" ng-show="!editar">
+            <i class="glyphicon glyphicon-erase"></i> Descartar 
+         </button>
+
+        <button type="button" class="btn btn-default" style="float: right;" ng-click="saveChanges()" ng-show="!editar">
+            <i class="glyphicon glyphicon-floppy-disk"></i> Salvar 
+         </button>
+
+         <button type="button" class="btn btn-default" style="float: right;" ng-click="abstracao()" ng-show="editar">
+            <i class="glyphicon glyphicon-flash"></i> Abstração 
+         </button>
+
+    </h3>
+
+    <table class="table table-bordered" id="tabelation" style="text-align: center;vertical-align: middle" ng-if="!mostrarAbstracao">
+
+     <tr style = " background: #666; color: white;">
+        <td>Dados</td>
+        <td ng-repeat="l in letras track by $index">{{l}}</td> 
+      </tr>
+
+     <tr ng-repeat="c in linhasTabela track by $index" on-finish-render="ngRepeatFinished">
+        <td>{{c}}</td>
+
+        <td ng-repeat="l in letras track by $index">
+         <table class="table table-bordered">
+          <tr>
+            <td id="{{l+c+1}}" ng-click="mudarCor(l+c+1)" style="cursor:pointer">Estrutura</td>
+            <td id="{{l+c+2}}" ng-click="mudarCor(l+c+2)" style="cursor:pointer">Morfologia</td>
+            <td id="{{l+c+3}}" ng-click="mudarCor(l+c+3)" style="cursor:pointer">Crescimento</td>
+          </tr>
+          <tr> 
+            <td id="{{l+c+4}}" ng-click="mudarCor(l+c+4)" style="cursor:pointer">Amarradas</td>
+            <td id="{{l+c+5}}" ng-click="mudarCor(l+c+5)" style="cursor:pointer">Epífitas</td>
+            <td id="{{l+c+6}}" ng-click="mudarCor(l+c+6)" style="cursor:pointer">Herbivoria</td>
+          </tr>
+          </table>
+        </td> 
+
+      </tr>  
+
+    </table>
+
+
+    <!-- //tabela de abstracao -->
+     <table class="table table-bordered" id="tabelation" style="text-align: center;vertical-align: middle" ng-if="mostrarAbstracao">
+
+     <tr style = " background: #666; color: white;">
+        <td>Dados</td>
+        <td ng-repeat="l in letras track by $index">{{l}}</td> 
+      </tr>
+
+     <tr ng-repeat="c in linhasTabela track by $index" on-finish-render="ngRepeatFinishedAbstracao">
+        <td>{{c}}</td>
+
+        <td ng-repeat="l in letras track by $index" id={{l+c}}></td> 
+
+      </tr>  
+
+    </table>
+     <!-- //tabela de abstracao -->
+
+
+  </div>
+      <br>
+
+      <div class="row">
+      <div class="col-md-7">
+       <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Data Coleta</label>
+
+          <div class="col-sm-9">
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="input.dt" init-date="initialDate" is-open="popup1.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" ng-readonly="true" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open1()" ng-disabled="editar"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+        </div>
+        </div>
+
+        <div class="col-md-7">
+          <div class="form-group row clearfix">
+            <label for="inputOccupation" class="col-sm-3 control-label" >Peso Total</label>
+
+            <div class="col-sm-8">
+              <input type="number" class="form-control" ng-model="input.peso" placeholder="" ng-readonly="editar" required>
+            </div>
+            <label for="inputOccupation" class="col-sm-1 control-label">Quilos</label>
+          </div>
+        </div>
+
+
+
+
+        </div>
+
+      <div class="row">
+
+       <div class="col-md-6">
+  
+          <div class="form-group row clearfix">
+            <label for="inputFirstName" class="col-sm-3 control-label">Observações</label>
+            <div class="col-sm-9">
+            <!--   <input type="text" class="form-control" id="inputDecription" placeholder="000.000.000"> -->
+              <textarea name="Text1" class="form-control" ng-model="input.obs" cols="40" rows="5" ng-readonly="editar"></textarea>
+            </div>
+
+          </div>
+
+       </div>
+      </div>
+
+<p ng-if="warning">
+ <font color="red">{{warning}}</font>
+</p> 
+  {{message}}
+
+  </form>
+
+
+</div>

@@ -1,0 +1,86 @@
+<div class="widgets" ng-if="!carregandoTabela">
+
+   <div class="row">
+    <div class="col-md-12">
+      <div ba-panel ba-panel-title="Atividades" ba-panel-class="with-scroll">
+       
+         <button type="button" class="btn btn-danger" style="float: right;" ng-click="mostraDelecao()">
+            <i class="glyphicon glyphicon-remove"></i>
+        </button>
+
+        <div class="horizontal-scroll">
+        <div class="form-group select-page-size-wrap ">
+          <label>Registro por página
+            <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                    ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+            </select>
+          </label>
+        </div>
+
+        <table class="table" st-table="smartTableData">
+          <thead>
+          <tr class="sortable ">
+            <th class="table-id" st-sort="name" st-sort-default="true">Nome</th>
+            <th st-sort="points">Pontos</th>
+            <th ng-if="deletarAtividades">Deletar</th>
+          </tr>
+
+          <tr>
+
+            <th class="col-md-4"><input st-search="name" placeholder="Busca por nome" class="input-sm form-control search-input"
+                       type="search"/></th>
+
+            <th><input t-search="points" placeholder="Busca por pontos" class="input-sm form-control search-input"
+                       type="search"/></th>
+
+            <th class="col-md-1" ng-if="deletarAtividades"></th>
+
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr ng-repeat="item in smartTableData">
+            <td class="table-id" ui-sref="activities.unico({id:item._id})" style="cursor:pointer">{{item.name}}</td>
+            <td>{{item.points}}</td>
+            <td ng-if="deletarAtividades">
+               <button ng-show="deletarAtividades" class="btn btn-danger editable-table-button btn-xs" ng-click="removeActivities(item._id)">Deletar</button>
+             </td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="6" class="text-center">
+              <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+
+
+      </div>
+    </div>
+  </div>
+
+<!--
+   <div class="row">
+    <div class="col-md-12"
+         ba-panel
+         ba-panel-title="Combined bullet/column and line graphs with multiple value axes"
+         ba-panel-class="with-scroll">
+      <div ng-include="'app/pages/charts/amCharts/combinedChart/combinedChart.html'"></div>
+    </div>
+    -->
+    <!--<div class="col-md-6">-->
+    <!--<div ba-panel ba-panel-title="Gantt chart" ba-panel-class="with-scroll">-->
+    <!--<div ng-include="'app/pages/charts/amCharts/ganttChart/ganttChart.html'"></div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--
+  </div>
+  -->
+
+  
+
+
+</div>

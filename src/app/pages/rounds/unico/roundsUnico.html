@@ -1,0 +1,176 @@
+<div class="panel-content" ng-if="carregado2 && carregado">
+
+     <div class="row">
+    <div class="col-md-12">
+      <div ba-panel ba-panel-title="Atividades" ba-panel-class="with-scroll">
+        
+        <div class="horizontal-scroll">
+  <div class="form-group select-page-size-wrap ">
+    <label>Registro por página
+      <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+              ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+      </select>
+    </label>
+  </div>
+  <table class="table" st-table="smartTableData">
+    <thead>
+    <tr class="sortable ">
+      <th class="table-id" st-sort="position" st-sort-default="true">Posição</th>
+      <th st-sort="firstName">Nome</th>
+      <th st-sort="lastName">Pontos</th>
+      <th st-sort="username">Média estrelas</th>
+      <th st-sort="numero"># Atividades</th>   
+    </tr>
+    <tr>
+
+      <th class="col-md-2"><input st-search="position" placeholder="Busca por Posição" class="input-sm form-control search-input"
+                 type="search"/></th>
+
+      <th class="col-md-4"><input st-search="firstName" placeholder="Busca por Nome" class="input-sm form-control search-input"
+                 type="search"/></th>
+
+      <th class="col-md-2"><input st-search="lastName" placeholder="Busca por Pontos" class="input-sm form-control search-input"
+                 type="search"/></th>
+
+      <th class="col-md-2"><input st-search="username" placeholder="Busca por Média Estrelas" class="input-sm form-control search-input"
+                 type="search"/></th>
+
+      <th class="col-md-2"><input st-search="numero" placeholder="Busca por Numero Atividades" class="input-sm form-control search-input"
+                 type="search"/></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in smartTableData" ng-style="set_color(item)">
+      <td class="table-id">{{item.rank}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.pontosTotais}}</td>
+      <td>{{item.mediaEstrelas}}</td>
+      <td>{{item.numberAct}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+      </div>
+    </div>
+  </div>
+
+ <div ba-panel ba-panel-class="profile-page" ng-if="loggedIn">
+  <form ng-submit="saveChanges()">
+  <div class="panel-content">
+
+    <h3 class="with-line">Geral
+
+
+  
+     <button type="button" class="btn btn-default" style="float: right;" ng-click="gonnaEdit()" ng-show="editar && !hasEnded">
+        <i class="glyphicon glyphicon-edit"></i> Editar 
+     </button>
+
+    <button type="button" class="btn btn-default" style="float: right;" ng-click="discardChanges()" ng-show="!editar && !hasEnded">
+        <i class="glyphicon glyphicon-erase"></i> Descartar 
+     </button>
+
+    <button type="submit" class="btn btn-default" style="float: right;" ng-show="!editar && !hasEnded">
+        <i class="glyphicon glyphicon-floppy-disk"></i> Salvar 
+     </button>
+
+    <button type="button" class="btn btn-danger" style="float: right;" ng-click="fecharRound()" ng-show="editar && dataPossivel && !hasEnded">
+        Fechar Round 
+     </button>
+    
+   
+    </h3>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Nome</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="input.name" placeholder="" required ng-readonly="editar">
+          </div>
+        </div>
+
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Prêmio</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="prize.name" placeholder="" ng-readonly="editar">
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-md-6">
+
+        <div class="form-group row clearfix">
+
+          <label for="inputFirstName" class="col-sm-3 control-label">Início</label>
+
+          <div class="col-sm-9">
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="input.begin" is-open="popup1.opened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-readonly="true"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open1()" ng-disabled="editar"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+
+        </div>
+
+         <div class="form-group row clearfix">
+
+          <label for="inputFirstName" class="col-sm-3 control-label">Fim</label>
+
+          <div class="col-sm-9">
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="input.end" is-open="popup2.opened" datepicker-options="dateOptions2" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-readonly="true"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open2()" ng-disabled="editar"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+
+        </div>
+
+       
+      </div>
+    </div>
+        <div class="row">
+
+             <div class="form-group row clearfix">
+           <label for="inputSite" class="col-sm-2 control-label">Em</label>    
+
+           <div class="col-sm-10" ng-disabled="editar">
+        
+            <multiple-autocomplete  ng-model="input.participantSites" required 
+                 suggestions-arr="fillingSites">
+            </multiple-autocomplete>
+           <!--  <select class="form-control" ng-model="input.participantSites" ng-options="o as o for o in fillingSites" required><option></option></select> -->
+
+          </div>
+
+        
+        </div>
+
+    </div>
+   
+
+
+  </div>
+  </form>
+  <p ng-if="warning">
+ <font color="red">{{warning}}</font>
+</p> 
+</div>
+
+
+</div>

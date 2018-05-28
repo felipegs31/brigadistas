@@ -1,0 +1,106 @@
+<!--<dashboard-pie-chart ng-if="loggedIn"></dashboard-pie-chart> -->
+
+<div class="row" ng-if="loggedIn">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div ba-panel ba-panel-title="Google Maps" class="viewport100">
+       <ng-map default-style="true" zoom="11" center="-23.135048, -44.229917">
+        <info-window id="myInfoWindow">
+            <div ng-non-bindable>
+                <h4 ui-sref="sites.unico({id:selectedCity._id})">{{selectedCity.name}}</h4>
+                <h5>{{peso}}</h5>
+            </div>
+        </info-window>
+        <marker ng-repeat="s in sites"
+                icon="{{iconeCerto(s)}}" position="{{s.latitude}},{{s.longitude}}" title="{{s.name}}" id="{{s._id}}" on-click="showCity(event, s)">
+        </marker>
+        <marker ng-repeat="c in comunities"
+                icon="{{customIcon}}" position="{{c.latitude}},{{c.longitude}}" title="{{c.name}}" id="{{c._id}}" on-click="showCity(event, c)">
+        </marker>
+    </ng-map>
+</div>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="row">
+      <div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12"
+           ba-panel
+           ba-panel-title="Últimos Rounds Abertos " 
+           ba-panel-class="medium-panel">
+
+
+    <div class="col-md-6 col-lg-4" ng-repeat="abertos in roundsAberos | limitTo:4">
+      <div class="panel panel-info contextual-example-panel bootstrap-panel">
+        <div class="panel-heading" ui-sref="rounds.unico({id:abertos._id})" style="cursor:pointer">{{abertos.name}}</div>
+        <div class="panel-body">{{abertos.begin | date:'dd/MM/yyyy'}} à {{abertos.end | date:'dd/MM/yyyy'}}</div>
+
+      </div>
+    </div>
+
+         
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xlg-9 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="row">
+      <div class="col-xlg-8 col-lg-12 col-md-12 col-sm-7 col-xs-12"
+           ba-panel
+           ba-panel-title="Últimos Rounds Fechados"
+           ba-panel-class="medium-panel">
+
+        <div class="col-md-6 col-lg-4" ng-repeat="fechados in roundsFechados">
+          <div class="panel panel-primary contextual-example-panel bootstrap-panel">
+            <div class="panel-heading" ui-sref="rounds.unico({id:fechados._id})" style="cursor:pointer">{{fechados.name}}</div>
+            <div class="panel-body">{{fechados.begin | date:'dd/MM/yyyy'}} à {{fechados.end | date:'dd/MM/yyyy'}}</div>
+          </div>
+        </div>
+
+      </div>     
+    </div>
+    </div>
+ 
+</div>
+
+
+<div class="row" ng-if="loggedIn">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+    <div ba-panel ba-panel-title="Notificações" class="viewport100">
+    
+    <div class="row">
+      <a ng-click=openRegister() style="cursor:pointer">Registrar Usuário</a>
+    </div>
+
+    <br>
+
+    <div class="row" ng-if="mostraRoundParaFechar">
+     Rounds elegíveis para fechar: 
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4 col-lg-3" ng-repeat="paraFechar in roundParaFechar" ng-if="mostraRoundParaFechar">
+        <div class="panel panel-danger contextual-example-panel bootstrap-panel">
+          <div class="panel-heading" ui-sref="rounds.unico({id:paraFechar._id})" style="cursor:pointer"> {{paraFechar.name}}</div>
+          <div class="panel-body">{{paraFechar.begin | date:'dd/MM/yyyy'}} à {{paraFechar.end | date:'dd/MM/yyyy'}}</div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row" ng-if="mostraBrigadistaValido">
+      Brigadistas com data do multiplicador validado: 
+    </div>
+    <br>
+    <div ng-repeat="ValidadeMultiplicador in brigadistasValidadeMultiplicador" ng-if="mostraBrigadistaValido">
+      <button type="button" class="btn btn-default" ui-sref="brigadistas.unico({id:ValidadeMultiplicador._id})">{{ValidadeMultiplicador.name}}</button>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+

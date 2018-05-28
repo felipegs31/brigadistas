@@ -1,0 +1,114 @@
+<div ba-panel ba-panel-class="profile-page">
+<form ng-submit="addManutention()">
+  <div class="panel-content">
+
+    <h3 class="with-line">Geral</h3>
+
+   
+    <div class="row">
+      <div class="col-md-6">
+
+        <div class="form-group row clearfix">
+
+          <label for="inputFirstName" class="col-sm-3 control-label">Data</label>
+
+          <div class="col-sm-9">
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="input.dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputLastName" class="col-sm-3 control-label">Empresa</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="input.company" placeholder="Concertos Ltda">
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputLastName" class="col-sm-3 control-label">Telefone</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="input.phonenumber" ui-br-phone-number>
+          </div>
+        </div>
+
+         <div class="form-group row clearfix">
+          <label for="inputLastName" class="col-sm-3 control-label">Km</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="input.km" placeholder="45672">
+          </div>
+        </div>
+
+        <div class="form-group row clearfix">
+          <label for="inputLastName" class="col-sm-3 control-label">Preço</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="input.price" ui-money-mask>
+          </div>
+        </div>
+
+        <div class="form-group row clearfix">
+          <label class="col-sm-3 control-label">Método</label>
+
+          <div class="col-sm-9">
+            <select class="form-control" ng-model="input.metod" selectpicker>
+              <option>Cartão Débito</option>
+              <option>Cartão Crédito</option>
+              <option>Dinheiro</option>
+            </select>
+          </div>
+        </div>
+
+
+  
+
+      </div>
+      <div class="col-md-6">
+        
+                <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Observações</label>
+         <div class="col-sm-9">
+            <!--   <input type="text" class="form-control" id="inputDecription" placeholder="000.000.000"> -->
+            <textarea name="Text1" class="form-control" ng-model="input.obs" cols="40" rows="5"></textarea>
+            </div>
+
+              </div>
+
+      </div>
+    </div>
+
+  <div class="row">
+      <div class="col-md-12">
+        <div class="form-group row clearfix">
+
+            <label for="inputFirstName" class="col-sm-3 col-md-1 control-label">Motivo</label>
+
+            <div class="col-sm-11">
+            <!--   <input type="text" class="form-control" id="inputDecription" placeholder="000.000.000"> -->
+            <textarea name="Text1" class="form-control" ng-model="input.motive" cols="40" rows="5"></textarea>
+            </div>
+
+        </div>
+
+          <pre>Selected date is: <em>{{input.dt | date:'fullDate' }}</em></pre>
+
+          <pre>master = {{master | json}}</pre>
+  
+      </div>
+  </div>
+    
+   
+
+
+    <button type="submit" class="btn btn-primary btn-with-icon save-profile">
+      <i class="ion-android-checkmark-circle"></i>Update Profile
+    </button>
+  </div>
+  </form>
+</div>

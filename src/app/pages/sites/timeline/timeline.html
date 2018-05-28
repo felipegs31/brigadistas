@@ -1,0 +1,48 @@
+<!-- todo: remove whole block -->
+<div ba-panel ng-if='carregado'>
+
+  <section id="cd-timeline" class="cd-container cssanimations" ng-controller="TimelineCtrl">
+    
+
+
+    <div class="cd-timeline-block" ng-repeat="item in timelineInput">
+      <div class="cd-timeline-img">
+        <div class="kameleon-icon with-round-bg danger" ng-if="item.avaliacaoGeral == 3" ui-sref="sites.registroEdicao({id:roteamento._id, id2:item._id})"><img ng-src="{{::( 'Checklist' | kameleonImg )}}"></div>
+        <div class="kameleon-icon with-round-bg warning" ng-if="item.avaliacaoGeral == 2" ui-sref="sites.registroEdicao({id:roteamento._id, id2:item._id})"><img ng-src="{{::( 'Checklist' | kameleonImg )}}"></div>
+        <div class="kameleon-icon with-round-bg success" ng-if="item.avaliacaoGeral == 1" ui-sref="sites.registroEdicao({id:roteamento._id, id2:item._id})"><img ng-src="{{::( 'Checklist' | kameleonImg )}}"></div>
+      </div>
+
+      <div class="cd-timeline-content danger" ng-if="item.avaliacaoGeral == 3">
+        <h5>Observações:</h5>
+        <p> {{item.obs}}</p>
+        <br>
+        <p> <h5>Peso: {{item.peso}}</h5></p>
+        
+        <span class="cd-date">{{item.dt | date:'dd/MM/yyyy'}}</span>
+      </div>
+
+      <div class="cd-timeline-content warning" ng-if="item.avaliacaoGeral == 2">
+        <h5>Observações:</h5>
+        <p> {{item.obs}}</p>
+        <br>
+        <p> <h5>Peso: {{item.peso}}</h5></p>
+        
+        <span class="cd-date">{{item.dt | date:'dd/MM/yyyy'}}</span>
+      </div>
+
+
+      <div class="cd-timeline-content primary" ng-if="item.avaliacaoGeral == 1">
+        <h5>Observações:</h5>
+        <p> {{item.obs}}</p>
+        <br>
+        <p> <h5>Peso: {{item.peso}}</h5></p>
+        
+        <span class="cd-date">{{item.dt | date:'dd/MM/yyyy'}}</span>
+      </div>
+
+
+    </div>
+
+     </section>
+   
+</div>

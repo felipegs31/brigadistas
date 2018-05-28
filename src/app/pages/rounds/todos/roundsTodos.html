@@ -1,0 +1,81 @@
+<div class="widgets" ng-if="!carregandoRounds">
+
+   <div class="row">
+    <div class="col-md-12">
+      <div ba-panel ba-panel-title="Brigadistas" ba-panel-class="with-scroll">
+
+              <button type="button" class="btn btn-danger" style="float: right;" ng-click="mostraDelecao()">
+                <i class="glyphicon glyphicon-remove"></i>
+            </button>
+
+      <div class="horizontal-scroll">
+  <div class="form-group select-page-size-wrap ">
+    <label>Registro por página
+      <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+              ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+      </select>
+    </label>
+  </div>
+  <table class="table" st-table="smartTableData">
+    <thead>
+    <tr class="sortable ">
+      <th class="table-id" st-sort="name" st-sort-default="true">Nome</th>
+      <th st-sort="begin">Início</th>
+      <th st-sort="end">Término</th>
+      <th st-sort="prize">Prêmio</th>
+      <th st-sort="hasEnded">Encerrado</th>
+      <th st-sort="participantSites">Participação</th>
+      <th ng-if="deletarRounds">Deletar</th>
+      
+    </tr>
+    <tr>
+      <th class="col-md-2"><input st-search="name" placeholder="Busca por Nome" class="input-sm form-control search-input"
+                 type="search" " /></th>
+
+      <th><input st-search="begin" placeholder="Busca por Início" class="input-sm form-control search-input"
+                 type="search"/></th>
+
+      <th><input st-search="end" placeholder="Busca por Término" class="input-sm form-control search-input"
+                 type="search"/></th>
+
+      <th><input st-search="prize" placeholder="Busca por Prêmio" class="input-sm form-control search-input" type="search"/>
+      </th>
+
+      <th><input st-search="hasEnded" placeholder="Busca por Encerrado" class="input-sm form-control search-input" type="search"/>
+      </th>
+
+      <th><input st-search="participantSites" placeholder="Busca por Participação" class="input-sm form-control search-input" type="search"/>
+      </th>
+
+       <th class="col-md-1" ng-if="deletarRounds"></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in smartTableData">
+      <td class="table-id" ui-sref="rounds.unico({id:item._id})" style="cursor:pointer">{{item.name}}</td>
+      <td>{{item.begin | date:'dd/MM/yyyy'}}</td>
+      <td>{{item.end | date:'dd/MM/yyyy'}}</td>
+      <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.prize}}</a></td>
+      <td>{{item.hasEnded == true ? "Sim" : "Não"}}</td>
+      <td>{{item.participantSites}}</td>
+      <td ng-if="deletarRounds">
+       <button ng-show="deletarRounds" class="btn btn-danger editable-table-button btn-xs" ng-click="removeRounds(item._id)">Deletar</button>
+     </td>
+
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="widgets" ng-if="!carregandoBrigadistas">
+
+
+<div class="row">
+    <div class="col-md-12">
+      <div ba-panel ba-panel-title="Brigadistas" ba-panel-class="with-scroll">
+       
+              <button type="button" class="btn btn-danger" style="float: right;" ng-click="mostraDelecao()" ng-if="loggedIn">
+                <i class="glyphicon glyphicon-remove"></i>
+            </button>
+
+
+
+        <div class="horizontal-scroll">
+          <div class="form-group select-page-size-wrap ">
+            <label>Registro por página
+              <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                      ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+              </select>
+            </label>
+          </div>
+
+   <table class="table" st-table="smartTableData">
+    <thead>
+    <tr class="sortable" >
+      <th st-sort="name">Nome</th>
+      <th st-sort="rg" ng-if="loggedIn">RG</th>
+      <th st-sort="email" ng-if="loggedIn">Email</th>
+      <th st-sort="age" >Idade</th>
+      <th st-sort="phone" ng-if="loggedIn">Telefone</th>
+      <th st-sort="ativo" ng-if="loggedIn">Ativo</th>
+      <th ng-if="deletarAtividades && loggedIn"">Deletar</th>
+    </tr>
+    <tr>
+      <th class="col-md-4"><input st-search="name" placeholder="Search Nome" class="input-sm form-control search-input"
+                 type="search" " /></th>
+
+      <th ng-if="loggedIn"><input st-search="rg" placeholder="Busca por RG" class="input-sm form-control search-input"
+                 type="search"/></th>
+
+      <th ng-if="loggedIn"><input st-search="email" placeholder="Busca por Email" class="input-sm form-control search-input" type="search"/>
+      </th>
+
+      <th><input st-search="age" placeholder="Busca por Idade" class="input-sm form-control search-input" type="search"/>
+      </th>
+    
+      <th ng-if="loggedIn"><input st-search="phone" placeholder="Busca por Telefone" class="input-sm form-control search-input" type="search"/>
+      </th>
+
+      <th ng-if="loggedIn"><input st-search="ativo" placeholder="Busca por Ativo" class="input-sm form-control search-input" type="search"/>
+      </th>
+
+      <th ng-if="deletarAtividades && loggedIn"></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in smartTableData">
+      <td ui-sref="brigadistas.unico({id:item._id})" style="cursor:pointer">{{item.name}}</td>
+      <td ng-if="loggedIn">{{item.rg}}</td>
+      <td ng-if="loggedIn"><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
+      <td>{{item.age}}</td>
+      <td ng-if="loggedIn">{{item.phone}}</td>
+      <td ng-if="loggedIn">{{item.ativo == true ? "Sim" : "Não"}}</td>
+      <td ng-if="deletarAtividades && loggedIn">
+         <button ng-show="deletarAtividades" class="btn btn-danger editable-table-button btn-xs" ng-click="removeBrigadista(item)">Delete</button>
+       </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="6" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+
+
+
+ 
+
+ 
+   
+  </div>
+
+  </div>
+
+
+
+

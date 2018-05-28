@@ -1,0 +1,64 @@
+    <div ba-panel ba-panel-class="profile-page" ng-if="!loggedIn">
+  
+  <div class="panel-content">
+    Apenas administradores tem acesso a essa função
+  </div>
+  </div>
+
+  <div ba-panel ba-panel-class="profile-page" ng-if="loggedIn">
+  <form ng-submit="addActivities()">
+  <div class="panel-content">
+
+    <h3 class="with-line">Geral</h3>
+
+     <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Nome*</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="input.name" placeholder="" required>
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputLastName" class="col-sm-3 control-label">Pontos*</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="input.points" required>
+          </div>
+        </div>
+
+       
+      </div>
+      <div class="col-md-6">
+
+       
+        <div class="form-group row clearfix">
+        <label for="inputFirstName" class="col-sm-3 control-label">Descrição</label>
+         <div class="col-sm-9">
+            <!--   <input type="text" class="form-control" id="inputDecription" placeholder="000.000.000"> -->
+            <textarea name="Text1" class="form-control" ng-model="input.description" cols="40" rows="5"></textarea>
+            </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary btn-with-icon save-profile">
+      <i class="ion-android-checkmark-circle"></i>Criar Atividade
+    </button>
+
+
+  </div>
+  </form>
+  <p ng-if="confirmacao">
+  A atividade <b>{{confirmacao.name}}</b> foi Criada!
+</p> 
+  </div>
+
+
+
+

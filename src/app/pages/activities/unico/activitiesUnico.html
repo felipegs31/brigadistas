@@ -1,0 +1,179 @@
+    <div ba-panel ba-panel-class="profile-page" ng-if="!loggedIn">
+  
+  <div class="panel-content">
+    Apenas administradores tem acesso a essa função
+  </div>
+  </div>
+
+<div  ng-if="carregado && loggedIn">
+
+
+<div id="asd1">
+<div class="panel-content" id="zindexmaior">
+
+
+ <div ba-panel ba-panel-class="profile-page" >
+ 
+  <form ng-submit="addActivities()">
+   <div class="panel-content">
+
+     <h3 class="with-line">Adicionar Atividade</h3>
+     <div class="row">
+
+      <div class="col-md-3">
+        <div class="form-group row clearfix" style="text-align: center;">
+          <label  class="control-label">O</label><br>
+              <input type="text" ng-model="atividade.brigadista" uib-typeahead="name for name in filling | filter:$viewValue | limitTo:8" class="form-control" typeahead-no-results="noResults1" ng-required="true">
+          <div ng-show="noResults1">
+            <i class="glyphicon glyphicon-remove"></i> No Results Found
+          </div>  
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <div class="form-group row clearfix" style="text-align: center;" >
+        <label  class="control-label">Fez </label> <br>
+            <input type="text" class="form-control" ng-model="input.name" value="input.name" ng-required="true"  ng-readonly="true">
+        </div>
+      </div>
+
+      <div class="col-md-3">
+       
+         <div class="form-group row clearfix" style="text-align: center;">
+          <label  class="control-label">Em</label><br>
+    
+
+          <input type="text" ng-model="atividade.site" uib-typeahead="name for name in fillingSites | filter:$viewValue | limitTo:8" class="form-control" typeahead-no-results="noResults2" ng-required="true">
+          
+          <div ng-show="noResults2">
+            <i class="glyphicon glyphicon-remove"></i> No Results Found
+          </div>  
+
+        </div>
+
+
+      </div>
+
+      <div class="col-md-2">
+
+       
+        <div class="form-group row clearfix" style="text-align: center;">
+        <label for="inputFirstName" class="control-label">Dia</label><br>
+              
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="atividade.dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" required="true"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+     
+        </div>
+
+      </div>
+
+    <div class="col-md-1">
+        <div class="form-group row clearfix" style="text-align: center;"> 
+        <label  class="control-label">Qualidade </label> <br>
+            <span uib-rating ng-model="atividade.rating" max="max" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating" required="true"></span>
+              
+        </div>
+    </div>
+
+    <div class="col-md-1" style="text-align: center;">
+       <br>
+        <button type="submit" class="btn btn-primary btn-with-icon save-profile">
+              <i class="ion-android-checkmark-circle"></i>
+        </button>
+    </div>
+
+    </div>
+
+    </form>
+
+      <p ng-if="retorno">
+
+        <button type="button" ng-click="deletarAtividade()" class="btn btn-default">
+              <i class="ion-ios-undo"></i>
+        </button>
+        
+        Adicionada a atividade <b>{{input.name}}</b> para o brigadista <b>{{retorno.brigadista}}</b> na localização <b>{{retorno.site}}</b> no dia <b>{{retorno.dt | date:'dd/MM/yyyy'}}</b> com <b>{{retorno.rating}}</b> estrelas
+
+      </p>
+   </div> 
+   
+  </div>
+</div>
+
+
+
+
+<div id="zindexmenor">
+ <div ba-panel ba-panel-class="profile-page">
+
+  <form ng-submit="addActivities()">
+  <div class="panel-content">
+   <div class="zindexmenor">
+
+    <h3 class="with-line">Geral
+  
+     <button type="button" class="btn btn-default" style="float: right;" ng-click="gonnaEdit()" ng-show="editar">
+        <i class="glyphicon glyphicon-edit"></i> Editar 
+     </button>
+
+    <button type="button" class="btn btn-default" style="float: right;" ng-click="discardChanges()" ng-show="!editar">
+        <i class="glyphicon glyphicon-erase"></i> Descartar 
+     </button>
+
+    <button type="button" class="btn btn-default" style="float: right;" ng-click="saveChanges()" ng-show="!editar">
+        <i class="glyphicon glyphicon-floppy-disk"></i> Salvar 
+     </button>
+
+    </h3>
+
+  
+       <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Nome*</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="input.name" placeholder="" required ng-readonly="editar">
+          </div>
+        </div>
+        <div class="form-group row clearfix">
+          <label for="inputLastName" class="col-sm-3 control-label">Pontos*</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="input.points" required ng-readonly="editar">
+          </div>
+        </div>
+
+       
+      </div>
+      <div class="col-md-6">
+
+       
+        <div class="form-group row clearfix">
+        <label for="inputFirstName" class="col-sm-3 control-label">Descrição</label>
+         <div class="col-sm-9">
+            <!--   <input type="text" class="form-control" id="inputDecription" placeholder="000.000.000"> -->
+            <textarea name="Text1" class="form-control" ng-model="input.description" cols="40" rows="5" ng-readonly="editar"></textarea>
+            </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+   
+  </div>
+ </form>
+
+
+</div>
+</div>
+</div>
+
+</div>

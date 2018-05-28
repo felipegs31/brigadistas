@@ -1,0 +1,101 @@
+    <div ba-panel ba-panel-class="profile-page" ng-if="!loggedIn">
+  
+  <div class="panel-content">
+    Apenas administradores tem acesso a essa função
+  </div>
+  </div>
+
+  <div ba-panel ba-panel-class="profile-page" ng-if="loggedIn"> 
+  <form ng-submit="addRound()">
+  <div class="panel-content">
+
+    <h3 class="with-line">Geral</h3>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Nome</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="input.name" placeholder="" required>
+          </div>
+        </div>
+
+        <div class="form-group row clearfix">
+          <label for="inputFirstName" class="col-sm-3 control-label">Prêmio</label>
+
+          <div class="col-sm-9">
+            <input type="text" class="form-control" ng-model="prize.name" placeholder="">
+          </div>
+        </div>
+  
+      </div>
+      <div class="col-md-6">
+
+        <div class="form-group row clearfix">
+
+          <label for="inputFirstName" class="col-sm-3 control-label">Início</label>
+
+          <div class="col-sm-9">
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="input.begin" is-open="popup1.opened" datepicker-options="dateOptions1" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-readonly="true" required/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+
+        </div>
+
+         <div class="form-group row clearfix">
+
+          <label for="inputFirstName" class="col-sm-3 control-label">Fim</label>
+
+          <div class="col-sm-9">
+            <p class="input-group">
+              <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="input.end" is-open="popup2.opened" datepicker-options="dateOptions2" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-readonly="true"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+
+        </div>
+
+       
+      </div>
+    </div>
+    <div class="row">
+
+             <div class="form-group row clearfix">
+           <label for="inputSite" class="col-sm-2 control-label">Em</label>    
+
+           <div class="col-sm-10">
+        
+            <multiple-autocomplete ng-model="input.participantSites" required
+                 suggestions-arr="fillingSites">
+            </multiple-autocomplete>
+           <!--  <select class="form-control" ng-model="input.participantSites" ng-options="o as o for o in fillingSites" required><option></option></select> -->
+
+          </div>
+
+        
+        </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-with-icon save-profile">
+      <i class="ion-android-checkmark-circle"></i>Create Round
+    </button>
+
+  </div>
+  </form>
+  
+<p ng-if="warning">
+ <font color="red">{{warning}}</font>
+</p> 
+  </div>
+
+
+
+

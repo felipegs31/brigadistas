@@ -1,0 +1,52 @@
+<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+  <a href="#/dashboard" class="al-logo clearfix"><span>Brigadistas</span>Admin</a>
+  <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
+
+ 
+
+ <!--  <div class="user-profile clearfix">
+    <div class="al-user-profile" uib-dropdown>
+      <a uib-dropdown-toggle class="profile-toggle-link">
+        <img ng-src="{{::( 'Nasta' | profilePicture )}}">
+      </a>
+      <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
+        <li><i class="dropdown-arr"></i></li> 
+        <li><a href="#/profile"><i class="fa fa-user"></i>Profile</a></li>
+        <li><a href><i class="fa fa-cog"></i>Settings</a></li>
+        <li><a href class="signout"><i class="fa fa-power-off"></i>Sign out</a></li>
+      </ul>
+    </div>
+    <msg-center></msg-center>
+  </div> -->
+
+     <div class="user-profile clearfix" style="height:100%;margin-top:-3px;">
+
+          <div ng-if="!loggedIn" style=" display:inline-block; height:100%;">
+            <div style="display:table;height:100%">
+              <div style="display: table-cell;vertical-align:middle;height:100% font-size:20px">
+                <a ng-click="openLogin()">
+               <!--  <span class="glyphicon glyphicon-log-in" style="font-size:20px"></span> -->
+                
+                <span style="font-size:20px"> Login</span> <img src="./assets/img/login.png" style="height:20px; width:20px" /></a>
+
+              </div>
+            </div>
+          </div>
+
+       <!--    <div ng-if="loggedIn">
+            <a>{{username}}</a>
+          </div> -->
+
+          <div ng-if="loggedIn" ng-click="logOut()" style=" display:inline-block; height:100%;">
+            <div style="display:table;height:100%">
+              <div style="display: table-cell;vertical-align:middle;height:100% font-size:20px">
+                <span style="font-size:20px">{{username}}</span>
+                <a><span style="font-size:20px"> Logout</span> <img src="./assets/img/logout.png" style="height:20px; width:20px" /></a>
+             </div>
+            </div>
+          </div>
+          
+      </div>
+
+
+</div>
